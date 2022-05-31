@@ -6,6 +6,13 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 // import controllers
+const speechRecognitionController = require("./controllers/speechRecognition");
+const weatherController = require("./controllers/weather");
+const usersController = require("./controllers/users");
+const authController = require("./controllers/auth");
+
+// middleware
+const { tokenExtractor, userExtractor } = require("./utils/authMiddleware");
 
 // mongoose
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -20,6 +27,16 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 
-// use controllers
+// public endpoints
+app.use("/api/auth", authController);
+app.use("/api/users", usersController);
+
+// authentication middleware
+// app.use(tokenExtractor);
+// app.use(userExtractor);
+
+// protected endpoints
+app.use("/api/speech-recognition", speechRecognitionController);
+app.use("/api/weather", weatherController);
 
 module.exports = app;
