@@ -10,6 +10,7 @@ const speechRecognitionController = require("./controllers/speechRecognition");
 const weatherController = require("./controllers/weather");
 const usersController = require("./controllers/users");
 const authController = require("./controllers/auth");
+const notesController = require("./controllers/notes");
 
 // middleware
 const { tokenExtractor, userExtractor } = require("./utils/authMiddleware");
@@ -27,6 +28,10 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 // public endpoints
 app.use("/api/auth", authController);
 app.use("/api/users", usersController);
@@ -38,5 +43,6 @@ app.use("/api/users", usersController);
 // protected endpoints
 app.use("/api/speech-recognition", speechRecognitionController);
 app.use("/api/weather", weatherController);
+app.use("/api/notes", notesController);
 
 module.exports = app;

@@ -15,7 +15,6 @@ usersRouter.post("/", async (req, res) => {
     const newUser = new User({
         username: data.username,
         name: data.name,
-        birthday: data.birthday,
         email: data.email,
         passwordHash
     });
