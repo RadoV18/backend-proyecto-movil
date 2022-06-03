@@ -11,6 +11,7 @@ const weatherController = require("./controllers/weather");
 const usersController = require("./controllers/users");
 const authController = require("./controllers/auth");
 const notesController = require("./controllers/notes");
+const jokesController = require("./controllers/joke");
 
 // middleware
 const { tokenExtractor, userExtractor } = require("./utils/authMiddleware");
@@ -44,5 +45,6 @@ app.use("/api/users", usersController);
 app.use("/api/speech-recognition", speechRecognitionController);
 app.use("/api/weather", weatherController);
 app.use("/api/notes", notesController);
+app.use("/api/jokes", jokesController);
 
 module.exports = app;
