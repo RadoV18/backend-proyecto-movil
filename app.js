@@ -12,6 +12,7 @@ const usersController = require("./controllers/users");
 const authController = require("./controllers/auth");
 const notesController = require("./controllers/notes");
 const jokesController = require("./controllers/joke");
+const newsController = require("./controllers/news");
 
 // middleware
 const { tokenExtractor, userExtractor } = require("./utils/authMiddleware");
@@ -46,5 +47,6 @@ app.use("/api/speech-recognition", speechRecognitionController);
 app.use("/api/weather", weatherController);
 app.use("/api/notes", notesController);
 app.use("/api/jokes", jokesController);
+app.use("/api/news", newsController);
 
 module.exports = app;
